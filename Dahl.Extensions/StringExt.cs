@@ -10,6 +10,7 @@ namespace Dahl.Extensions
         private static CultureInfo      _cultureInfo = CultureInfo.InvariantCulture;
         private static StringComparison _ignoreCase  = StringComparison.OrdinalIgnoreCase;
 
+
         public static CultureInfo CultureInfo
         {
             get { return _cultureInfo;  }
@@ -274,17 +275,18 @@ namespace Dahl.Extensions
             return src.TrimEnd();
         }
 
-        ///----------------------------------------------------------------------------------------
-        /// <summary>
-        /// If possbile makes a Guid from the string provided, otherwide it returns an Empty Guid.
-        /// </summary>
-        /// <param name="src"></param>
+        /// ----------------------------------------------------------------------------------------
+        ///  <summary>
+        ///  If possbile makes a Guid from the string provided, otherwide it returns an Empty Guid.
+        ///  </summary>
+        ///  <param name="src"></param>
+        /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static Guid ToGuid( this string src )
+        public static Guid ToGuid( this string src, Guid defaultValue = default( Guid ) )
         {
             try
             {
-                return new Guid( src );
+                return src.IsNotNullOrEmpty() ? new Guid( src ) : defaultValue;
             }
             catch ( Exception )
             {
@@ -300,28 +302,9 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static DateTime ToDateTime( this string src, DateTime defaultValue )
+        public static DateTime ToDateTime( this string src, DateTime defaultValue = default( DateTime ) )
         {
-            if ( string.IsNullOrEmpty( src ) )
-                return defaultValue;
-
-            DateTime result;
-            if ( !DateTime.TryParse( src, out result ) )
-                result = defaultValue;
-
-            return result;
-        }
-
-        ///----------------------------------------------------------------------------------------
-        /// <summary>
-        /// Converts string to date time, if string is null or empty this method uses 
-        /// min value as the default date which is 1/1/0001.
-        /// </summary>
-        /// <param name="src"></param>
-        /// <returns></returns>
-        public static DateTime ToDate( this string src )
-        {
-            return ToDate( src, DateTime.MinValue );
+            return ToDate( src, defaultValue );
         }
 
         ///----------------------------------------------------------------------------------------
@@ -331,7 +314,7 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static DateTime ToDate( this string src, DateTime defaultValue )
+        public static DateTime ToDate( this string src, DateTime defaultValue = default( DateTime ) )
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
@@ -362,7 +345,7 @@ namespace Dahl.Extensions
         /// <param name="src">Valid values are "f" or "false" and "t" or "true"</param>
         /// <param name="defaultValue">If parameter is not specified, false is returned.</param>
         /// <returns></returns>
-        public static bool ToBool( this string src, bool defaultValue = false )
+        public static bool ToBool( this string src, bool defaultValue = default( bool ) )
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
@@ -381,7 +364,7 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static short ToInt16( this string src, short defaultValue = short.MinValue )
+        public static short ToInt16( this string src, short defaultValue = default( short ) )
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
@@ -401,7 +384,7 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static int ToInt32( this string src, int defaultValue = int.MinValue )
+        public static int ToInt32( this string src, int defaultValue = default( int ) )
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
@@ -421,7 +404,7 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static Int64 ToInt64( this string src, Int64 defaultValue = Int64.MinValue )
+        public static Int64 ToInt64( this string src, Int64 defaultValue = default( Int64 ) )
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
@@ -441,7 +424,7 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static double ToDouble( this string src, double defaultValue = double.MinValue )
+        public static double ToDouble( this string src, double defaultValue = default( double ) )
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
@@ -461,7 +444,7 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static float ToFloat( this string src, float defaultValue = float.MinValue )
+        public static float ToFloat( this string src, float defaultValue = default( float ) )
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
@@ -481,7 +464,7 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static decimal ToDecimal( this string src, decimal defaultValue = decimal.MinValue )
+        public static decimal ToDecimal( this string src, decimal defaultValue = default( decimal ) )
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
@@ -602,12 +585,12 @@ namespace Dahl.Extensions
             string formatedNumber = src;
             switch ( src.Length )
             {
-                case 7:
-                    formatedNumber = $"{src.Substring(0, 3)}-{src.Substring(3, 4)}";
+                case 7 :
+                    formatedNumber = $"{src.Substring( 0, 3 )}-{src.Substring( 3, 4 )}";
                     break;
 
-                case 10:
-                    formatedNumber = $"({src.Substring(0, 3)}) {src.Substring(3, 3)}-{src.Substring(6, 4)}";
+                case 10 :
+                    formatedNumber = $"({src.Substring( 0, 3 )}) {src.Substring( 3, 3 )}-{src.Substring( 6, 4 )}";
                     break;
             }
             return formatedNumber;
