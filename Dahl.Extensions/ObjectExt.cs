@@ -10,7 +10,7 @@ namespace Dahl.Extensions
     {
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Takes an object and returns it as a string.
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -21,7 +21,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to DateTime
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to short
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -43,7 +43,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to int
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to long
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to bool
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -76,7 +76,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to byte
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -87,7 +87,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to DateTime?
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to short?
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -109,7 +109,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to int?
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -120,7 +120,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to long?
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -131,7 +131,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to bool?
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -142,7 +142,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to byte?
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -153,7 +153,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// 
+        /// Casts object to DateTime?
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
