@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="14.0">
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>netcoreapp2.0;net45;net46;net47;</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>true</SignAssembly>
+    <ShouldCreateLogs>True</ShouldCreateLogs>
+    <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyFileVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.Increment</AssemblyFileVersionSettings>
+    <AssemblyVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.Increment</AssemblyVersionSettings>
+    <AssemblyInfoVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.Increment</AssemblyInfoVersionSettings>
+    <Authors>Kevin Dahl</Authors>
+    <Company>Dahl Software Services</Company>
+    <Product>Extensions</Product>
+    <Description>Extensions for string, Linq, List, Object, StringBuilder, and Dictionary.</Description>
+    <Copyright>Dahl Software Consulting</Copyright>
+    <PackageTags>string, linq, StringBuilder, Dictionary</PackageTags>
+    <AssemblyVersion>1.0.18.124</AssemblyVersion>
+    <FileVersion>1.0.18.124</FileVersion>
+    <Version>1.0.18</Version>
+    <PackageReleaseNotes>Updated to work with .NET 4.5x, 4.6x, 4.7x, .NET Core 2.0</PackageReleaseNotes>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
+    <PackageProjectUrl>https://github.com/kdahltx/Dahl.Extensions</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/kdahltx/Dahl.Extensions/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/kdahltx/Dahl.Extensions</RepositoryUrl>
+    <RepositoryType></RepositoryType>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="ECHO macro names ---------------------------------------------------------------------&#xD;&#xA;echo TargetDir=&quot;$(TargetDir)&quot;&#xD;&#xA;echo ProjectPath=&quot;$(ProjectPath)&quot;  &#xD;&#xA;echo ProjectDir = $(ProjectDir)&#xD;&#xA;echo OutDir = $(OutDir)&#xD;&#xA;echo Configuration = $(Configuration)&#xD;&#xA;echo Platform = $(Platform)&#xD;&#xA;echo TargetName = $(TargetName)&#xD;&#xA;echo nugetFile = $(ProjectDir)bin\$(Configuration)\$(TargetName)&#xD;&#xA;ECHO Start Post Build Event ---------------------------------------------------------------------&#xD;&#xA;ECHO Copying NuGet package to AppProd1 in Post-Build event...&#xD;&#xA;ECHO ProjectDir = $(ProjectDir)&#xD;&#xA;echo xcopy &quot;$(ProjectDir)bin\$(Configuration)\$(TargetName).*.nupkg  &quot;\\APPPROD1\DriveE\IISWebSitesProd\NuGet\wwwroot\Packages&quot;  /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(Configuration)\$(TargetName).*.nupkg&quot;  &quot;\\APPPROD1\DriveE\IISWebSitesProd\NuGet\wwwroot\Packages&quot;  /y&#xD;&#xA;ECHO End Post Build Event ---------------------------------------------------------------------&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+  </Target>
+</Project>
