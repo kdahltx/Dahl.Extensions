@@ -1,70 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="14.0">
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E9AB4561-06F0-4C71-AD14-267C4115E292}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dahl.Extensions</RootNamespace>
-    <AssemblyName>Dahl.Extensions</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <TargetFrameworks>netcoreapp2.0;net45;net46;net47;</TargetFrameworks>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>true</SignAssembly>
+    <ShouldCreateLogs>True</ShouldCreateLogs>
+    <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
+    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+    <AssemblyFileVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.Increment</AssemblyFileVersionSettings>
+    <AssemblyVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.Increment</AssemblyVersionSettings>
+    <AssemblyInfoVersionSettings>IncrementOnDemand.IncrementOnDemand.IncrementOnDemand.Increment</AssemblyInfoVersionSettings>
+    <Authors>Kevin Dahl</Authors>
+    <Company>Dahl Software Services</Company>
+    <Product>Extensions</Product>
+    <Description>Extensions for string, Linq, List, Object, StringBuilder, and Dictionary.</Description>
+    <Copyright>Dahl Software Consulting</Copyright>
+    <PackageTags>string, linq, StringBuilder, Dictionary</PackageTags>
+    <AssemblyVersion>1.0.18.124</AssemblyVersion>
+    <FileVersion>1.0.18.124</FileVersion>
+    <Version>1.0.18</Version>
+    <PackageReleaseNotes>Updated to work with .NET 4.5x, 4.6x, 4.7x, .NET Core 2.0</PackageReleaseNotes>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
+    <PackageProjectUrl>https://github.com/kdahltx/Dahl.Extensions</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/kdahltx/Dahl.Extensions/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/kdahltx/Dahl.Extensions</RepositoryUrl>
+    <RepositoryType></RepositoryType>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="DictionaryExt.cs" />
-    <Compile Include="LinqExt.cs" />
-    <Compile Include="ListExt.cs" />
-    <Compile Include="ObjectExt.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StringBuilderExt.cs" />
-    <Compile Include="StringExt.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="_CreateNewNuGetPackage\Config.ps1" />
-    <None Include="_CreateNewNuGetPackage\DoNotModify\CreateNuGetPackage.ps1" />
-    <None Include="_CreateNewNuGetPackage\DoNotModify\New-NuGetPackage.ps1" />
-    <None Include="_CreateNewNuGetPackage\DoNotModify\UploadNuGetPackage.ps1" />
-    <None Include="_CreateNewNuGetPackage\RunMeToUploadNuGetPackage.cmd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="_CreateNewNuGetPackage\DoNotModify\NuGet.exe" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
-REM If you see this in Visual Studio's Error List window, check the Output window's Build tab for the actual error.
-ECHO Creating NuGet package in Post-Build event...
-PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)_CreateNewNuGetPackage\DoNotModify\CreateNuGetPackage.ps1' -ProjectFilePath '$(ProjectPath)' -OutputDirectory '\\APPPROD1\DriveE\IISWebSitesProd\NuGet\wwwroot\Packages' -BuildConfiguration '$(ConfigurationName)' -BuildPlatform '$(PlatformName)'"
-</PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="ECHO macro names ---------------------------------------------------------------------&#xD;&#xA;echo TargetDir=&quot;$(TargetDir)&quot;&#xD;&#xA;echo ProjectPath=&quot;$(ProjectPath)&quot;  &#xD;&#xA;echo ProjectDir = $(ProjectDir)&#xD;&#xA;echo OutDir = $(OutDir)&#xD;&#xA;echo Configuration = $(Configuration)&#xD;&#xA;echo Platform = $(Platform)&#xD;&#xA;echo TargetName = $(TargetName)&#xD;&#xA;echo nugetFile = $(ProjectDir)bin\$(Configuration)\$(TargetName)&#xD;&#xA;ECHO Start Post Build Event ---------------------------------------------------------------------&#xD;&#xA;ECHO Copying NuGet package to AppProd1 in Post-Build event...&#xD;&#xA;ECHO ProjectDir = $(ProjectDir)&#xD;&#xA;echo xcopy &quot;$(ProjectDir)bin\$(Configuration)\$(TargetName).*.nupkg  &quot;\\APPPROD1\DriveE\IISWebSitesProd\NuGet\wwwroot\Packages&quot;  /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(Configuration)\$(TargetName).*.nupkg&quot;  &quot;\\APPPROD1\DriveE\IISWebSitesProd\NuGet\wwwroot\Packages&quot;  /y&#xD;&#xA;ECHO End Post Build Event ---------------------------------------------------------------------&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+  </Target>
 </Project>
