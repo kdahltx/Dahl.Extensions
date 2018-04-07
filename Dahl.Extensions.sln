@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dahl.Extensions", "Dahl.Extensions\Dahl.Extensions.csproj", "{E9AB4561-06F0-4C71-AD14-267C4115E292}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dahl.Extensions", "Dahl.Extensions\Dahl.Extensions.csproj", "{FC9F1C11-C5BE-484D-AA12-71B93AC37992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dahl.Extensions.Tests", "Dahl.Extensions.Tests\Dahl.Extensions.Tests.csproj", "{2C0ED47C-84AB-4FEF-AA34-E25BF6A65355}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +13,31 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E9AB4561-06F0-4C71-AD14-267C4115E292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9AB4561-06F0-4C71-AD14-267C4115E292}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9AB4561-06F0-4C71-AD14-267C4115E292}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9AB4561-06F0-4C71-AD14-267C4115E292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC9F1C11-C5BE-484D-AA12-71B93AC37992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC9F1C11-C5BE-484D-AA12-71B93AC37992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC9F1C11-C5BE-484D-AA12-71B93AC37992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC9F1C11-C5BE-484D-AA12-71B93AC37992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C0ED47C-84AB-4FEF-AA34-E25BF6A65355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C0ED47C-84AB-4FEF-AA34-E25BF6A65355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C0ED47C-84AB-4FEF-AA34-E25BF6A65355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C0ED47C-84AB-4FEF-AA34-E25BF6A65355}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {7DFC7DEF-5A64-4119-ABF5-E54FA90457EE}
+		SolutionGuid = {18F454DC-95DD-49FE-844C-042FE76F37AC}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://kevindahltx.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Dahl.Extensions\\Dahl.Extensions.csproj
+		SccProjectName1 = Dahl.Extensions
+		SccLocalPath1 = Dahl.Extensions
+		SccProjectUniqueName2 = Dahl.Extensions.Tests\\Dahl.Extensions.Tests.csproj
+		SccProjectName2 = Dahl.Extensions.Tests
+		SccLocalPath2 = Dahl.Extensions.Tests
 	EndGlobalSection
 EndGlobal

@@ -3,3 +3,15 @@
 ################################################################################
 
 /Dahl.Extensions/obj
+/Dahl.Extensions/csproj.user
+/Dahl.Extensions/csproj.vspscc
+/.vs/VSWorkspaceState.json
+/.vs/Dahl.Extensions/v15
+/.vs/ProjectSettings.json
+/.vs/slnx.sqlite
+/Dahl.Extensions/Properties/PublishProfiles/AppProd1.pubxml.user
+/Dahl.Extensions/Properties/PublishProfiles/AppProd1.pubxml
+/Dahl.Extensions/Dahl.Extensions.csproj.vspscc
+/Dahl.Extensions/Dahl.Extensions.csproj.user
+/packages
+/Dahl.Extensions.Tests/Dahl.Extensions.Tests.csproj.vspscc
