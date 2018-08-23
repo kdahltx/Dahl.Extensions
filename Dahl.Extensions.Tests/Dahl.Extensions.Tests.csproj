@@ -24,7 +24,7 @@
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <TargetFrameworkProfile />
-    <AssemblyVersion>1.0.0.81</AssemblyVersion>
+    <AssemblyVersion>1.0.0.100</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,9 +44,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dahl.Extensions, Version=2.2.18.246, Culture=neutral, PublicKeyToken=189312674c2b856a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Dahl.Extensions.1.1.18\lib\net46\Dahl.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.dll</HintPath>
     </Reference>
@@ -58,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DictionaryExtTests.cs" />
+    <Compile Include="Int32ExtTests.cs" />
     <Compile Include="LinqExtTests.cs" />
     <Compile Include="ListExtTests.cs" />
     <Compile Include="ObjectExtTests.cs" />
@@ -68,6 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dahl.Extensions\Dahl.Extensions.csproj">
+      <Project>{fc9f1c11-c5be-484d-aa12-71b93ac37992}</Project>
+      <Name>Dahl.Extensions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

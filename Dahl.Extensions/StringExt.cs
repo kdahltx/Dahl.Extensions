@@ -7,21 +7,8 @@ namespace Dahl.Extensions
 {
     public static class StringExt
     {
-        private static CultureInfo      _cultureInfo = CultureInfo.InvariantCulture;
-        private static StringComparison _ignoreCase  = StringComparison.OrdinalIgnoreCase;
-
-
-        public static CultureInfo CultureInfo
-        {
-            get { return _cultureInfo;  }
-            set { _cultureInfo = value; }
-        }
-
-        public static StringComparison IgnoreCase
-        {
-            get { return _ignoreCase; }
-            set { _ignoreCase = value; }
-        }
+        public static CultureInfo CultureInfo { get; set; } = CultureInfo.InvariantCulture;
+        public static StringComparison IgnoreCase { get; set; } = StringComparison.OrdinalIgnoreCase;
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
@@ -65,9 +52,7 @@ namespace Dahl.Extensions
         /// <returns>The parsed value if string represents a legal integer, otherwise the default value</returns>
         public static int IntParse( this string src, int def = default( int ) )
         {
-            int target;
-            int.TryParse( src, out target );
-            return target;
+            return int.TryParse( src, out var target ) ? target : def;
         }
 
         ///-----------------------------------------------------------------------------------------
@@ -334,8 +319,7 @@ namespace Dahl.Extensions
         /// <returns></returns>
         public static bool IsDate( this string src )
         {
-            DateTime result;
-            return DateTime.TryParse( src, out result );
+            return DateTime.TryParse( src, out var result );
         }
 
         ///----------------------------------------------------------------------------------------
@@ -469,18 +453,17 @@ namespace Dahl.Extensions
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
 
-            decimal result;
             src = src.Replace( ",", "" );
-            if ( decimal.TryParse( src, out result ) )
+            if ( decimal.TryParse( src, out var result ) )
                 return result;
 
             return defaultValue;
         }
 
         //-----------------------------------------------------------------------------------------
-        private static readonly Regex DigitsPattern = new Regex("^[0-9]*$");
-        private static readonly Regex SsnPattern    = new Regex(@"^(?!000)(?!666)(?!9[0-9][0-9])\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$");
-        private static readonly Regex EmailPattern  = new Regex( @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$" );
+        private static readonly Regex _digitsPattern = new Regex("^[0-9]*$");
+        private static readonly Regex _ssnPattern    = new Regex(@"^(?!000)(?!666)(?!9[0-9][0-9])\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$");
+        private static readonly Regex _emailPattern  = new Regex( @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$" );
         /// ----------------------------------------------------------------------------------------
         ///  <summary>
         ///  Determines if the string is a valid SSN format and valid SSN.
@@ -492,7 +475,7 @@ namespace Dahl.Extensions
             if ( string.IsNullOrEmpty( src ) )
                 return false;
 
-            return SsnPattern.Match( src ).Success;
+            return _ssnPattern.Match( src ).Success;
         }
 
         ///----------------------------------------------------------------------------------------
@@ -503,7 +486,7 @@ namespace Dahl.Extensions
         /// <returns></returns>
         public static bool IsDigitsOnly( this string src )
         {
-            return DigitsPattern.Match( src ).Success;
+            return _digitsPattern.Match( src ).Success;
         }
 
         ///----------------------------------------------------------------------------------------
@@ -514,7 +497,7 @@ namespace Dahl.Extensions
         /// <returns></returns>
         public static string OnlyDigits( this string src )
         {
-            return DigitsPattern.Replace( src, string.Empty );
+            return _digitsPattern.Replace( src, string.Empty );
         }
 
         ///----------------------------------------------------------------------------------------
@@ -550,7 +533,7 @@ namespace Dahl.Extensions
             if ( src.IsNullOrEmpty() )
                 return false;
 
-            return EmailPattern.Match( src ).Success;
+            return _emailPattern.Match( src ).Success;
         }
 
         ///----------------------------------------------------------------------------------------
@@ -626,6 +609,11 @@ namespace Dahl.Extensions
             string[] lines = src.Split( new[] { Environment.NewLine }, StringSplitOptions.None );
             lines[lineNumber] = string.Empty;
             return string.Join( Environment.NewLine, lines );
+        }
+
+        public static bool Inset( this string src )
+        {
+            return true;
         }
     }
 }

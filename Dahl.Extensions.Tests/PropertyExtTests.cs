@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Collections.Generic;
-using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dahl.Extensions;
 
 namespace Dahl.Extensions.Tests
 {
@@ -13,16 +9,16 @@ namespace Dahl.Extensions.Tests
     {
         //-----------------------------------------------------------------------------------------
         [TestClass]
-        public class IPropertyAccessor_Method
+        public class PropertyAccessor_Method
         {
             [TestMethod]
             public void GetAccessor()
             {
                 int i = 0;
                 IPropertyAccessor[] accessors = typeof( TestClass ).GetAccessorList();
-                foreach ( var item in testClassList )
+                foreach ( var item in TestClassList )
                 {
-                    var expected = expectedList[i++];
+                    var expected = ExpectedList[i++];
                     foreach ( var accessor in accessors )
                     {
                         var propertyName = accessor.PropertyInfo.Name;
@@ -57,7 +53,7 @@ namespace Dahl.Extensions.Tests
         }
 
         //-----------------------------------------------------------------------------------------
-        public static List<TestClass> testClassList = new List<TestClass>
+        public static List<TestClass> TestClassList = new List<TestClass>
         {
             { new TestClass { Id=1,  FirstName="FirstName01", LastName="LastName01", Age = 51} },
             { new TestClass { Id=2,  FirstName="FirstName02", LastName="LastName02", Age = 52} },
@@ -71,7 +67,7 @@ namespace Dahl.Extensions.Tests
             { new TestClass { Id=10, FirstName="FirstName10", LastName="LastName10", Age = 60} },
         };
 
-        public static List<TestClass> expectedList = new List<TestClass>
+        public static List<TestClass> ExpectedList = new List<TestClass>
         {
             { new TestClass { TestClassId=101, FirstName="FirstName101", LastName="LastName101", Age=21 } },   
             { new TestClass { TestClassId=102, FirstName="FirstName102", LastName="LastName102", Age=22 } },   
@@ -95,8 +91,8 @@ namespace Dahl.Extensions.Tests
     {
         public int TestClassId
         {
-            get { return base.Id; }
-            set { base.Id = value; }
+            get { return Id; }
+            set { Id = value; }
         }
         public string FirstName { get; set; }
         public string LastName { get; set; }

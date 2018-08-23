@@ -7,7 +7,7 @@
     <SccLocalPath>SAK</SccLocalPath>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.0;net45;net46;net47;</TargetFrameworks>
+    <TargetFrameworks>net45;net46;net461;net462;net47;net471;net472;netcoreapp2.0;netcoreapp2.1;</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
     <ShouldCreateLogs>True</ShouldCreateLogs>
@@ -24,9 +24,9 @@
     <Description>Extensions for string, Linq, List, Object, StringBuilder, and Dictionary.</Description>
     <Copyright>Dahl Software Services</Copyright>
     <PackageTags>string, linq, StringBuilder, Dictionary</PackageTags>
-    <AssemblyVersion>1.1.18.247</AssemblyVersion>
-    <FileVersion>1.1.18.247</FileVersion>
-    <Version>1.1.18</Version>
+    <AssemblyVersion>1.1.19.276</AssemblyVersion>
+    <FileVersion>1.1.19.276</FileVersion>
+    <Version>1.1.19</Version>
     <PackageReleaseNotes>Updated to work with .NET 4.5x, 4.6x, 4.7x, .NET Core 2.0</PackageReleaseNotes>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
