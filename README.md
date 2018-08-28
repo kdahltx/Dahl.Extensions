@@ -1,37 +1,59 @@
-## Welcome to GitHub Pages
+Dahl.Data - .NET Extension methods for string, Dictionary, int, Linq, Property, StringBuilder
+========================================
 
-You can use the [editor on GitHub](https://github.com/kdahltx/Dahl.Extensions/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Release Notes
+-------------
+Located at [kdahltx/Dahl.Data](https://github.com/kdahltx/Data.Data)
 
-### Markdown
+Packages
+--------
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+| Package | NuGet Stable |
+| ------- | ------------ |
+| [Dahl.Extensions](https://www.nuget.org/packages/Dahl.Extensions/) | [![Dahl.Extensions](https://img.shields.io/nuget/Dahl.Extensions)](https://www.nuget.org/packages/Dahl.Extensions/) |
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+Features
+--------
+Dahl.Data is a [NuGet library](https://www.nuget.org/packages/Dahl.Data) that you can add in to your project to use extension methods to write code that is easies
+to write and read.
 
-1. Numbered
-2. List
+Example usage: Test for null or empty string
+```csharp
+string userName;
 
-**Bold** and _Italic_ and `Code` text
+if ( userName.IsNotNullOrEmpty() )
+    doSomething();
 
-[Link](url) and ![Image](src)
+if ( userName.IsNullOrEmpty() )
+    doSomething();
+
+```
+Example usage: Compares ignoring case
+```csharp
+string value1 = "john";
+string value2 = "John";
+
+if ( value1.EqualsIgnoreCase( value2 ) )
+    doSomething();
+
+// check for valid ssn
+string ssn = "111-23-1454"
+if ( value1.IsSsn() )
+    doSomething();
+
+// add ellipsis to end of string specifying max length
+string sentence = "this is a long sentence to where we want to add an ellipsis";
+sentence = sentence.ToEllipsis( 7 );
+// produces the string "this..."
+
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Example usage: Convert a string value to integer
+```csharp
+string num = "123";
+int val = num.ToInt32();
+```
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kdahltx/Dahl.Extensions/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.

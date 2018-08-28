@@ -15,3 +15,7 @@
 /Dahl.Extensions/Dahl.Extensions.csproj.user
 /packages
 /Dahl.Extensions.Tests/Dahl.Extensions.Tests.csproj.vspscc
+/Dahl.Extensions.Tests/obj
+/Dahl.Extensions/bin
+/Dahl.Extensions.Tests/bin/Debug
+/.vs/Dahl.Extensions/DesignTimeBuild

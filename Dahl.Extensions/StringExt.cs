@@ -44,7 +44,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// Convert a string to an integer 
+        /// Convert a string to an integer
         /// </summary>
         /// <param name="src">The string to parse</param>
         /// <param name="def">If provided, a value to return if the string cannot be parsed, if not
@@ -58,7 +58,7 @@ namespace Dahl.Extensions
         ///-----------------------------------------------------------------------------------------
         /// <summary>
         /// Determines whether 2 specified T:String objects have the same value ignoring case,
-        /// uses StringComparison.OrdinalIgnoreCase 
+        /// uses StringComparison.OrdinalIgnoreCase
         /// </summary>
         /// <param name="src">the string to compare</param>
         /// <param name="val">the value to compare</param>
@@ -80,7 +80,7 @@ namespace Dahl.Extensions
         ///-----------------------------------------------------------------------------------------
         /// <summary>
         /// Determines whether 2 specified T:String objects have the same value ignoring case,
-        /// uses StringComparison.OrdinalIgnoreCase 
+        /// uses StringComparison.OrdinalIgnoreCase
         /// </summary>
         /// <param name="src">the string to compare</param>
         /// <param name="val">the value to compare</param>
@@ -102,7 +102,7 @@ namespace Dahl.Extensions
         ///-----------------------------------------------------------------------------------------
         /// <summary>
         /// Determines whether 2 specified T:String objects have the same value ignoring case,
-        /// uses StringComparison.OrdinalIgnoreCase 
+        /// uses StringComparison.OrdinalIgnoreCase
         /// </summary>
         /// <param name="src">the string to compare</param>
         /// <param name="val">the value to compare</param>
@@ -124,7 +124,7 @@ namespace Dahl.Extensions
         ///-----------------------------------------------------------------------------------------
         /// <summary>
         /// Returns a value indicating whether the specified String object occurs within this string ignoring case,
-        /// uses StringComparison.OrdinalIgnoreCase 
+        /// uses StringComparison.OrdinalIgnoreCase
         /// </summary>
         /// <param name="src">the string to compare</param>
         /// <param name="val">the value to finde</param>
@@ -162,7 +162,7 @@ namespace Dahl.Extensions
         ///-----------------------------------------------------------------------------------------
         /// <summary>
         /// Determines whether the beginning of this string instance matches the specified string ignoring case,
-        /// uses StringComparison.OrdinalIgnoreCase 
+        /// uses StringComparison.OrdinalIgnoreCase
         /// </summary>
         /// <param name="src">the string to compare</param>
         /// <param name="val">the value to finde</param>
@@ -178,7 +178,7 @@ namespace Dahl.Extensions
         ///-----------------------------------------------------------------------------------------
         /// <summary>
         /// Determines whether the end of this string instance matches the specified string ignoring case,
-        /// uses StringComparison.OrdinalIgnoreCase 
+        /// uses StringComparison.OrdinalIgnoreCase
         /// </summary>
         /// <param name="src">the string to compare</param>
         /// <param name="val">the value to finde</param>
@@ -224,8 +224,9 @@ namespace Dahl.Extensions
 
         ///-----------------------------------------------------------------------------------------
         /// <summary>
-        /// Takes a string and if its length is greater than maxLen it trims it to maxLen-3 and 
-        /// appends three periods to the string.
+        /// Takes a string and if its length is greater than maxLen it trims it to maxLen-3 and
+        /// appends three periods to the string. if maxLen is less than or equal to 3 then
+        /// the string returned is 3 periods.
         /// </summary>
         /// <param name="src">the string to compare</param>
         /// <param name="maxLen">maximun length of string to return</param>
@@ -236,6 +237,9 @@ namespace Dahl.Extensions
                 return string.Empty;
 
             maxLen -= 3;
+            if ( maxLen < 0 )
+                maxLen = 0;
+
             if ( src.Length > maxLen )
                 return $"{src.Substring( 0, maxLen )}...";
 
@@ -313,7 +317,7 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// Returns true if string is a valid date 
+        /// Returns true if string is a valid date
         /// </summary>
         /// <param name="src"></param>
         /// <returns></returns>
@@ -352,10 +356,8 @@ namespace Dahl.Extensions
         {
             if ( string.IsNullOrEmpty( src ) )
                 return defaultValue;
-
-            short result;
             src = src.Replace( ",", "" );
-            if ( short.TryParse( src, out result ) )
+            if ( short.TryParse( src, out var result ) )
                 return result;
 
             return defaultValue;
@@ -555,7 +557,7 @@ namespace Dahl.Extensions
         }
 
         ///----------------------------------------------------------------------------------------
-        /// <summary> 
+        /// <summary>
         /// Formats a string as either a 7 or 10 digit phone src. (Does not strip out non-numeric data)
         /// </summary>
         /// <param name="src"></param>
@@ -580,7 +582,7 @@ namespace Dahl.Extensions
         }
 
         ///----------------------------------------------------------------------------------------
-        /// <summary> 
+        /// <summary>
         /// Formats a 9 character string as xxx-xx-xxxx
         /// </summary>
         /// <param name="src"></param>

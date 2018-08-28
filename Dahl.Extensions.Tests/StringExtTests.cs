@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Dahl.Extensions;
 
@@ -6,220 +7,287 @@ namespace Dahl.Extensions.Tests
 {
     public class StringExtTests
     {
-        //-----------------------------------------------------------------------------------------
-        [TestClass]
-        public class TrimWhiteSpace_Method
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="expected"></param>
+        [DataTestMethod]
+        [DataRow( null,      "" )]
+        [DataRow( "",        "" )]
+        [DataRow( "    dog", "dog" )]
+        [DataRow( "dog    ", "dog" )]
+        [DataRow( "  dog  ", "dog" )]
+        public void TrimWhiteSpace( string value, string expected )
         {
-            [DataTestMethod]
-            [DataRow( null, "" )]
-            [DataRow( "", "" )]
-            [DataRow( "    dog", "dog" )]
-            [DataRow( "dog    ", "dog" )]
-            [DataRow( "  dog  ", "dog" )]
-            public void Trim( string value, string expected )
-            {
-                string actual = value.TrimWhiteSpace();
-                Assert.AreEqual( expected, actual, "Values should be equal" );
-            }
+            string actual = value.TrimWhiteSpace();
+            Assert.AreEqual( expected, actual, "Values should be equal" );
         }
 
-        //-----------------------------------------------------------------------------------------
-        [TestClass]
-        public class ToInt32_Method
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="expected"></param>
+        [DataTestMethod]
+        [DataRow( "-2147483648", int.MinValue )]
+        [DataRow( "-999999",     -999999 )]
+        [DataRow( "-1",          -1 )]
+        [DataRow( "0",           0 )]
+        [DataRow( "1",           1 )]
+        [DataRow( "999999",      999999 )]
+        [DataRow( "2147483647",  int.MaxValue )]
+        public void ConvertStringToInt( string value, int expected )
         {
-            [DataTestMethod]
-            [DataRow( "-2147483648", int.MinValue )]
-            [DataRow( "-999999", -999999 )]
-            [DataRow( "-1", -1 )]
-            [DataRow( "0", 0 )]
-            [DataRow( "1", 1 )]
-            [DataRow( "999999", 999999 )]
-            [DataRow( "2147483647", int.MaxValue )]
-            public void ReturnEqualIntValue( string value, int expected )
-            {
-                int actual = value.ToInt32();
-                Assert.AreEqual( expected, actual, "Values should be equal" );
-            }
-
-            [DataTestMethod]
-            [DataRow( "-2147483649" )]
-            [DataRow( "2147483648" )]
-            public void ReturnDefaultValue( string value )
-            {
-                int actual = value.ToInt32();
-                Assert.AreEqual( default( int ), actual, "Values should be equal" );
-            }
-
-            [DataTestMethod]
-            [DataRow( "-2147483649" )]
-            [DataRow( "2147483648" )]
-            public void ReturnSpecifiedDefaultValue( string value )
-            {
-                int defaultValue = 10;
-                int actual = value.ToInt32( defaultValue );
-                Assert.AreEqual( defaultValue, actual, "Values should be equal" );
-            }
+            int actual = value.ToInt32();
+            Assert.AreEqual( expected, actual, "Values should be equal" );
         }
 
-        //-----------------------------------------------------------------------------------------
-        [TestClass]
-        public class IntParse_Method
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        [DataTestMethod]
+        [DataRow( "-2147483649" )]
+        [DataRow( "2147483648" )]
+        public void ConvertStringToIntReturnsDefaultIntValue( string value )
         {
+            int actual = value.ToInt32();
+            Assert.AreEqual( default( int ), actual, "Values should be equal" );
         }
 
-        [TestClass]
-        public class EqualsIgnoreCase_Method
+        ///----------------------------------------------------------------------------------------
+        /// 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        [DataTestMethod]
+        [DataRow( "-2147483649" )]
+        [DataRow( "2147483648" )]
+        public void ConvertStringToIntReturnsSpecifiedDefaultValue( string value )
         {
+            int defaultValue = 10;
+            int actual       = value.ToInt32( defaultValue );
+            Assert.AreEqual( defaultValue, actual, "Values should be equal" );
         }
 
-        [TestClass]
-        public class NotEqual_Method
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void ParseInt()
+        {}
+
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataTestMethod]
+        [DataRow("aBcdefg", "Abcdefg", true)]
+        [DataRow("abCdefg", "aBcdefg", true)]
+        [DataRow("abcDefg", "abCdefg", true)]
+        [DataRow("abcdEfg", "abcDefg", true)]
+        [DataRow("abcdeFg", "abcdEfg", true)]
+        [DataRow("abcdefG", "abcdeFg", true)]
+        [DataRow("Abcdefg", "abcdefG", true)]
+        [DataRow("aBcdefg", "abCdefg", true)]
+        [DataRow("abCdefg", "abcDefg", true)]
+        [DataRow("abcDEFG", "abcdEfg", true)]
+        [DataRow("abcdEFG", "abcdeFg", true)]
+        [DataRow("abcdeFG", "abcdefG", true)]
+        [DataRow("abcdefg", "abcdef", false)]
+        [DataRow("abcdefg", "AAcdefg", false)]
+        [DataRow("abcdefg", "abcdegg", false)]
+        public void EqualsIgnoreCase(string value1, string value2, bool expectedResult)
         {
+            bool actualResult = value1.EqualsIgnoreCase(value2);
+            Assert.AreEqual(actualResult, expectedResult);
         }
 
-        [TestClass]
-        public class NotEqualIgnoreCase_Method
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataTestMethod]
+        [DataRow("aBcdefg", "Abcdefg", false)]
+        [DataRow("abCdefg", "aBcdefg", false)]
+        [DataRow("abcDefg", "abCdefg", false)]
+        [DataRow("abcdEfg", "abcDefg", false)]
+        [DataRow("abcdeFg", "abcdEfg", false)]
+        [DataRow("abcdefG", "abcdeFg", false)]
+        [DataRow("Abcdefg", "abcdefG", false)]
+        [DataRow("aBcdefg", "abCdefg", false)]
+        [DataRow("abCdefg", "abcDefg", false)]
+        [DataRow("abcDEFG", "abcdEfg", false)]
+        [DataRow("abcdEFG", "abcdeFg", false)]
+        [DataRow("abcdeFG", "abcdefG", false)]
+        [DataRow("abcdefg", "abcdef", true)]
+        [DataRow("abcdefg", "AAcdefg", true)]
+        [DataRow("abcdefg", "abcdegg", true)]
+        public void NotEqualIgnoreCase(string value1, string value2, bool expectedResult)
         {
+            bool actualResult = value1.NotEqualIgnoreCase(value2);
+            Assert.AreEqual(actualResult, expectedResult);
         }
 
-        [TestClass]
-        public class ContainsIgnoreCase_Method
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        [DataTestMethod]
+        [DataRow("abcdefg", "abcdefg", false)]
+        [DataRow("aBcdefg", "Abcdefg", true)]
+        [DataRow("abCdefg", "aBcdefg", true)]
+        [DataRow("abcDefg", "abCdefg", true)]
+        [DataRow("abcdEfg", "abcDefg", true)]
+        [DataRow("abcdeFg", "abcdEfg", true)]
+        [DataRow("abcdefG", "abcdeFg", true)]
+        [DataRow("Abcdefg", "abcdefG", true)]
+        [DataRow("aBcdefg", "abCdefg", true)]
+        [DataRow("abCdefg", "abcDefg", true)]
+        [DataRow("abcDEFG", "abcdEfg", true)]
+        [DataRow("abcdEFG", "abcdeFg", true)]
+        [DataRow("abcdeFG", "abcdefG", true)]
+        [DataRow("abcdefg", "abcdef", true)]
+        [DataRow("abcdefg", "AAcdefg", true)]
+        [DataRow("abcdefg", "abcdegg", true)]
+        public void NotEqual(string value1, string value2, bool expectedResult)
         {
+            bool actualResult = value1.NotEqual(value2);
+            Assert.AreEqual(actualResult, expectedResult);
         }
 
-        [TestClass]
-        public class IsNullOrEmpty_Method
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void ContainsIgnoreCase()
+        {}
+
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]
+        public void IsNullOrEmpty()
+        {}
+
+        [TestMethod]
+        public void IsNotNullOrEmpty()
+        {}
+
+        [TestMethod]
+        public void StartsWithIgnoreCase()
+        {}
+
+        [TestMethod]
+        public void EndsWithIgnoreCase()
+        {}
+
+        [TestMethod]
+        public void ReplaceIgnoreCase()
+        {}
+
+        [DataTestMethod]
+        [DataRow( "abcdefghijklmnopqrstuvwxyz", 7, 7 )]
+        [DataRow( "abcdefghijklmnopqrstuvwxyz", 6, 6 )]
+        [DataRow( "abcdefghijklmnopqrstuvwxyz", 5, 5 )]
+        [DataRow( "abcdefghijklmnopqrstuvwxyz", 4, 4 )]
+        [DataRow( "abcdefghijklmnopqrstuvwxyz", 3, 3 )]
+        [DataRow( "abcdefghijklmnopqrstuvwxyz", 2, 3 )]
+        [DataRow( "abcdefghijklmnopqrstuvwxyz", 1, 3 )]
+        [DataRow( "abcdefghijklmnopqrstuvwxyz", 0, 3 )]
+        public void ReturnStringWithElipsis( string value, int len, int expectedLen )
         {
+            var newValue = value.ToEllipsis( len );
+            Trace.WriteLine( $"value: [{value}], newValue: [{newValue}], expected length: [{len}], actual length: [{newValue.Length}]" );
+            Assert.AreEqual( newValue.Length, expectedLen );
         }
 
-        [TestClass]
-        public class IsNotNullOrEmpty_Method
-        {
-        }
+        [TestMethod]
+        public void ToGuid()
+        {}
 
-        [TestClass]
-        public class StartsWithIgnoreCase_Method
-        {
-        }
+        [TestMethod]
+        public void ToDateTime()
+        {}
 
-        [TestClass]
-        public class EndsWithIgnoreCase_Method
-        {
-        }
+        [TestMethod]
+        public void ToDate()
+        {}
 
-        [TestClass]
-        public class ReplaceIgnoreCase_Method
-        {
-        }
+        [TestMethod]
+        public void IsDate()
+        {}
 
-        [TestClass]
-        public class ToString_Method
-        {
-        }
+        [TestMethod]
+        public void ToBool()
+        {}
 
-        [TestClass]
-        public class ToEllipsis_Method
-        {
-        }
+        [TestMethod]
+        public void ToInt16()
+        {}
 
-        [TestClass]
-        public class ToGuid_Method
-        {
-        }
+        [TestMethod]
+        public void ToInt64()
+        {}
 
-        [TestClass]
-        public class ToDateTime_Method
-        {
-        }
+        [TestMethod]
+        public void ToDouble()
+        {}
 
-        [TestClass]
-        public class ToDate_Method
-        {
-        }
+        [TestMethod]
+        public void ToFloat()
+        {}
 
-        [TestClass]
-        public class IsDate_Method
-        {
-        }
+        [TestMethod]
+        public void ToDecimal()
+        {}
 
-        [TestClass]
-        public class ToBool_Method
-        {
-        }
+        [TestMethod]
+        public void IsSsn()
+        {}
 
-        [TestClass]
-        public class ToInt16_Method
-        {
-        }
+        [TestMethod]
+        public void IsDigitsOnly()
+        {}
 
-        [TestClass]
-        public class ToInt64_Method
-        {
-        }
+        [TestMethod]
+        public void OnlyDigits()
+        {}
 
-        [TestClass]
-        public class ToDouble_Method
-        {
-        }
+        [TestMethod]
+        public void ToShortDateString()
+        {}
 
-        [TestClass]
-        public class ToFloat_Method
-        {
-        }
+        [TestMethod]
+        public void ToLongDateString()
+        {}
 
-        [TestClass]
-        public class ToDecimal_Method
-        {
-        }
+        [TestMethod]
+        public void IsValidEmailFormat()
+        {}
 
-        [TestClass]
-        public class IsSsn_Method
-        {
-        }
+        [TestMethod]
+        public void FormatWithLineBreaks()
+        {}
 
-        [TestClass]
-        public class IsDigitsOnly_Method
-        {
-        }
+        [TestMethod]
+        public void AsPhoneNumber()
+        {}
 
-        [TestClass]
-        public class OnlyDigits_Method
-        {
-        }
+        [TestMethod]
+        public void AsSsn()
+        {}
 
-        [TestClass]
-        public class ToShortDateString_Method
-        {
-        }
-
-        [TestClass]
-        public class ToLongDateString_Method
-        {
-        }
-
-        [TestClass]
-        public class IsValidEmailFormat_Method
-        {
-        }
-
-        [TestClass]
-        public class FormatWithLineBreaks_Method
-        {
-        }
-
-        [TestClass]
-        public class AsPhoneNumber_Method
-        {
-        }
-
-        [TestClass]
-        public class AsSsn_Method
-        {
-        }
-
-        [TestClass]
-        public class RemoveLine_Method
-        {
-        }
+        [TestMethod]
+        public void RemoveLine()
+        {}
     }
 }
