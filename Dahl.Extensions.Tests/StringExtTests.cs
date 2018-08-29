@@ -5,6 +5,7 @@ using Dahl.Extensions;
 
 namespace Dahl.Extensions.Tests
 {
+    [TestClass]
     public class StringExtTests
     {
         ///----------------------------------------------------------------------------------------
@@ -75,13 +76,29 @@ namespace Dahl.Extensions.Tests
             Assert.AreEqual( defaultValue, actual, "Values should be equal" );
         }
 
-        ///----------------------------------------------------------------------------------------
-        /// <summary>
-        /// 
-        /// </summary>
-        [TestMethod]
-        public void ParseInt()
-        {}
+        [DataTestMethod]
+        [DataRow("-2147483649", false)]
+        [DataRow("2147483648", false)]
+        [DataRow("-2147483648", true)]
+        [DataRow("2147483647", true)]
+        public void TryParseInt(string value, bool isValid)
+        {
+            int actual = value.IntParse();
+            if (isValid)
+            {
+                if (int.TryParse(value, out var expected))
+                    Assert.AreEqual(expected, actual);
+                else
+                    Assert.Fail();
+            }
+            else
+            {
+                if (!int.TryParse(value, out var expected))
+                    Assert.AreEqual(expected, actual);
+                else
+                    Assert.Fail();
+            }
+        }
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
@@ -90,15 +107,6 @@ namespace Dahl.Extensions.Tests
         [DataTestMethod]
         [DataRow("aBcdefg", "Abcdefg", true)]
         [DataRow("abCdefg", "aBcdefg", true)]
-        [DataRow("abcDefg", "abCdefg", true)]
-        [DataRow("abcdEfg", "abcDefg", true)]
-        [DataRow("abcdeFg", "abcdEfg", true)]
-        [DataRow("abcdefG", "abcdeFg", true)]
-        [DataRow("Abcdefg", "abcdefG", true)]
-        [DataRow("aBcdefg", "abCdefg", true)]
-        [DataRow("abCdefg", "abcDefg", true)]
-        [DataRow("abcDEFG", "abcdEfg", true)]
-        [DataRow("abcdEFG", "abcdeFg", true)]
         [DataRow("abcdeFG", "abcdefG", true)]
         [DataRow("abcdefg", "abcdef", false)]
         [DataRow("abcdefg", "AAcdefg", false)]
@@ -115,16 +123,6 @@ namespace Dahl.Extensions.Tests
         /// </summary>
         [DataTestMethod]
         [DataRow("aBcdefg", "Abcdefg", false)]
-        [DataRow("abCdefg", "aBcdefg", false)]
-        [DataRow("abcDefg", "abCdefg", false)]
-        [DataRow("abcdEfg", "abcDefg", false)]
-        [DataRow("abcdeFg", "abcdEfg", false)]
-        [DataRow("abcdefG", "abcdeFg", false)]
-        [DataRow("Abcdefg", "abcdefG", false)]
-        [DataRow("aBcdefg", "abCdefg", false)]
-        [DataRow("abCdefg", "abcDefg", false)]
-        [DataRow("abcDEFG", "abcdEfg", false)]
-        [DataRow("abcdEFG", "abcdeFg", false)]
         [DataRow("abcdeFG", "abcdefG", false)]
         [DataRow("abcdefg", "abcdef", true)]
         [DataRow("abcdefg", "AAcdefg", true)]
@@ -142,16 +140,6 @@ namespace Dahl.Extensions.Tests
         [DataTestMethod]
         [DataRow("abcdefg", "abcdefg", false)]
         [DataRow("aBcdefg", "Abcdefg", true)]
-        [DataRow("abCdefg", "aBcdefg", true)]
-        [DataRow("abcDefg", "abCdefg", true)]
-        [DataRow("abcdEfg", "abcDefg", true)]
-        [DataRow("abcdeFg", "abcdEfg", true)]
-        [DataRow("abcdefG", "abcdeFg", true)]
-        [DataRow("Abcdefg", "abcdefG", true)]
-        [DataRow("aBcdefg", "abCdefg", true)]
-        [DataRow("abCdefg", "abcDefg", true)]
-        [DataRow("abcDEFG", "abcdEfg", true)]
-        [DataRow("abcdEFG", "abcdeFg", true)]
         [DataRow("abcdeFG", "abcdefG", true)]
         [DataRow("abcdefg", "abcdef", true)]
         [DataRow("abcdefg", "AAcdefg", true)]
