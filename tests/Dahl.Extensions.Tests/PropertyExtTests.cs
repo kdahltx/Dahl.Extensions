@@ -12,9 +12,9 @@ namespace Dahl.Extensions.Tests
             int i = 0;
 
             IPropertyAccessor[] accessors = typeof( TestClass ).GetAccessorList();
-            foreach ( var item in TestClassList )
+            foreach ( var item in _testClassList )
             {
-                var expected = ExpectedList[i++];
+                var expected = _expectedList[i++];
                 foreach ( var accessor in accessors )
                 {
                     var propertyName = accessor.PropertyInfo.Name;
@@ -50,7 +50,7 @@ namespace Dahl.Extensions.Tests
         }
 
         //-----------------------------------------------------------------------------------------
-        private static readonly List<TestClass> TestClassList = new List<TestClass>
+        private static readonly List<TestClass> _testClassList = new List<TestClass>
         {
             new TestClass { Id = 1, FirstName  = "FirstName01", LastName = "LastName01", Age = 51 },
             new TestClass { Id = 2, FirstName  = "FirstName02", LastName = "LastName02", Age = 52 },
@@ -64,7 +64,7 @@ namespace Dahl.Extensions.Tests
             new TestClass { Id = 10, FirstName = "FirstName10", LastName = "LastName10", Age = 60 },
         };
 
-        private static readonly List<TestClass> ExpectedList = new List<TestClass>
+        private static readonly List<TestClass> _expectedList = new List<TestClass>
         {
             new TestClass { TestClassId = 101, FirstName = "FirstName101", LastName = "LastName101", Age = 21 },
             new TestClass { TestClassId = 102, FirstName = "FirstName102", LastName = "LastName102", Age = 22 },
