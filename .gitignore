@@ -22,3 +22,4 @@
 /.vs/Dahl.Extensions/v16/Server/sqlite3
 /tests/Dahl.Extensions.Tests/bin/Debug
 /tests/Dahl.Extensions.Tests/obj
+/src/Dahl.Extensions/obj/Debug/netcoreapp2.2
