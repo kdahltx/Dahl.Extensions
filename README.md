@@ -4,7 +4,7 @@ Dahl.Data - .NET Extension methods for string, Dictionary, int, Linq, Property, 
 
 Release Notes
 -------------
-Located at [kdahltx/Dahl.Data](https://github.com/kdahltx/Data.Data)
+Located at [kdahltx/Dahl.Data](https://github.com/kdahltx/Data.Extensions)
 
 Packages
 --------
@@ -17,7 +17,7 @@ Packages
 
 Features
 --------
-Dahl.Data is a [NuGet library](https://www.nuget.org/packages/Dahl.Data) that you can add in to
+Dahl.Extensions is a [NuGet library](https://www.nuget.org/packages/Dahl.Extensions) that you can add in to
 your project to use extension methods to write code that is easier to write and read.
 
 Example usage: Test for null or empty string
