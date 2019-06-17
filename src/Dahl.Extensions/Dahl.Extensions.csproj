@@ -24,7 +24,7 @@
     <AssemblyVersion>1.1.20.284</AssemblyVersion>
     <FileVersion>1.1.20.284</FileVersion>
     <Version>1.1.20</Version>
-    <PackageReleaseNotes>Updated to work with .NET 4.5, 4.6, 4.61, 4.62, 4.7, 4.71, 4.72, Core 2.0, Core 2.1</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated to work with .NET 4.5, 4.6, 4.61, 4.62, 4.7, 4.71, 4.72, 4.8, Core 2.0, Core 2.1, Core 2.2</PackageReleaseNotes>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
     <PackageProjectUrl>https://github.com/kdahltx/Dahl.Extensions</PackageProjectUrl>
