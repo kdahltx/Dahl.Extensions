@@ -57,7 +57,7 @@ namespace Dahl.Extensions.Tests
         public void ConvertStringToIntReturnsDefaultIntValue( string value )
         {
             int actual = value.ToInt32();
-            Assert.AreEqual( default( int ), actual, "Values should be equal" );
+            Assert.AreEqual( default, actual, "Values should be equal" );
         }
 
         ///----------------------------------------------------------------------------------------

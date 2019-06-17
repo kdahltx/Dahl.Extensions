@@ -19,3 +19,6 @@
 /Dahl.Extensions/bin
 /Dahl.Extensions.Tests/bin/Debug
 /.vs/Dahl.Extensions/DesignTimeBuild
+/.vs/Dahl.Extensions/v16/Server/sqlite3
+/tests/Dahl.Extensions.Tests/bin/Debug
+/tests/Dahl.Extensions.Tests/obj

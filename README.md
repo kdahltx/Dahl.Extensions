@@ -17,8 +17,8 @@ Packages
 
 Features
 --------
-Dahl.Data is a [NuGet library](https://www.nuget.org/packages/Dahl.Data) that you can add in to your project to use extension methods to write code that is easies
-to write and read.
+Dahl.Data is a [NuGet library](https://www.nuget.org/packages/Dahl.Data) that you can add in to
+your project to use extension methods to write code that is easier to write and read.
 
 Example usage: Test for null or empty string
 ```csharp
@@ -29,6 +29,10 @@ if ( userName.IsNotNullOrEmpty() )
 
 if ( userName.IsNullOrEmpty() )
     doSomething();
+
+if ( userName.EqualsIgnoreCase( "aBc" ) )
+    doSomething();
+
 
 ```
 Example usage: Compares ignoring case
