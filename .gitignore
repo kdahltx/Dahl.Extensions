@@ -28,3 +28,5 @@
 /.vs/Dahl.Extensions/v16/.suo
 /src/Dahl.Extensions/bin/Release
 /tests/Dahl.Extensions.Tests/bin/Release
+/.vs/Dahl.Extensions/v16/TestStore/0
+/src/Dahl.Extensions/bin/Debug

@@ -7,7 +7,7 @@
     <SccLocalPath>SAK</SccLocalPath>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>net46;net461;net462;net47;net471;net472;net48;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;</TargetFrameworks>
+    <TargetFrameworks>net46;net461;net462;net47;net471;net472;net48;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
     <ShouldCreateLogs>True</ShouldCreateLogs>
@@ -21,10 +21,10 @@
     <Description>Basic extensions for string, int, Linq, List, Object, Properties, StringBuilder, and Dictionary to simplify routine tasks.</Description>
     <Copyright>Dahl Software Services</Copyright>
     <PackageTags>Extensions for Dictionary, Int32, Linq, List, Object, Property, StringBuilder, String libraries</PackageTags>
-    <AssemblyVersion>1.1.21.284</AssemblyVersion>
-    <FileVersion>1.1.21.284</FileVersion>
-    <Version>1.1.21</Version>
-    <PackageReleaseNotes>Updated to work with .NET 4.5, 4.6, 4.61, 4.62, 4.7, 4.71, 4.72, 4.8, Core 2.0, Core 2.1, Core 2.2</PackageReleaseNotes>
+    <AssemblyVersion>1.1.23.284</AssemblyVersion>
+    <FileVersion>1.1.23.284</FileVersion>
+    <Version>1.1.22</Version>
+    <PackageReleaseNotes>Updated to work with .NET 4.5, 4.6, 4.61, 4.62, 4.7, 4.71, 4.72, 4.8, Core 2.0, Core 2.1, Core 2.2, Core 3.0</PackageReleaseNotes>
     <DelaySign>false</DelaySign>
     <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
     <PackageProjectUrl>https://github.com/kdahltx/Dahl.Extensions</PackageProjectUrl>
