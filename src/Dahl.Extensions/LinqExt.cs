@@ -151,5 +151,90 @@ namespace Dahl.Extensions
             HashSet<TKey> keys = new HashSet<TKey>();
             return src.Where( element => keys.Add( selector( element ) ) );
         }
+
+        #region Orders multi-dimensional array by selected column
+        /// <summary>
+        /// Copied from https://www.codeproject.com/Tips/166236/Sorting-a-Two-Dimensional-Array-in-Csharp
+        /// 
+        /// usage:
+        ///     int[,] sortedArray = array.OrderBy( x => x[colNum] );
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="src"></param>
+        /// <param name="selector"></param>
+        /// <returns></returns>
+        public static T[,] OrderBy<T>( this T[,] src, Func<T[], T> selector )
+        {
+            var oneDim = src.ToSingleDimension();
+            oneDim = oneDim.OrderBy( selector );
+
+            return oneDim.ToMultiDimension();
+        }
+
+        private static IEnumerable<T[]> ToSingleDimension<T>( this T[,] src )
+        {
+            T[] aRow;
+            for ( int row = 0; row < src.GetLength( 0 ); ++row )
+            {
+                aRow = new T[src.GetLength( 0 )];
+                for ( int col = 0; col < src.GetLength( 1 ); ++col )
+                    aRow[col] = src[row, col];
+
+                yield return aRow;
+            }
+        }
+
+        private static T[,] ToMultiDimension<T>( this IEnumerable<T[]> src )
+        {
+            T[,] twoDim;
+            T[][] arrayOfArray;
+            int numCols;
+            arrayOfArray = src.ToArray();
+            numCols = (arrayOfArray.Length > 0) ? arrayOfArray.Length : 0;
+            twoDim = new T[arrayOfArray.Length, numCols];
+
+            for ( int row = 0; row < arrayOfArray.GetLength( 0 ); ++row )
+                for ( int col = 0; col < numCols; ++col )
+                    twoDim[row, col] = arrayOfArray[row][col];
+
+            return twoDim;
+        }
+        #endregion
+
+        #region 
+        /// <summary>
+        /// Sorts ONLY the specified column, does NOT order other columns in src
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="src"></param>
+        /// <param name="column"></param>
+        /// <returns></returns>
+        public static T[,] OrderColumnBy<T>( this T[,] src, int column )
+        {
+            var colData = src.ToSingleDimension( column );
+            colData = colData.OrderBy( x => x ).ToArray();
+
+            return colData.ToMultiDimension( src, column );
+        }
+
+        // converts one column into a single dim array.
+        public static T[] ToSingleDimension<T>( this T[,] src, int colNum )
+        {
+            T[] colData = new T[src.GetLength(0)];
+            for ( int i = 0; i < src.GetLength( 0 ); i++ )
+                colData[i] = src[i, colNum];
+
+
+            return colData;
+        }
+
+        public static T[,] ToMultiDimension<T>( this T[] src, T[,] originalSrc, int colNum )
+        {
+            for ( int i = 0; i < src.GetLength( 0 ); i++ )
+                originalSrc[i, colNum] = src[i];
+
+            return originalSrc;
+        }
+        #endregion
     }
 }

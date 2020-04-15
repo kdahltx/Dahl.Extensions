@@ -31,6 +31,27 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="def"></param>
         /// <returns></returns>
+        public static byte ToByte( this object src, byte def = default )
+        {
+            byte target = def;
+            if ( src is string )
+            {
+                if ( Byte.TryParse( src.ToString(), out byte result ) )
+                    target = result;
+            }
+            else if ( src is byte )
+                target = (byte)src;
+
+            return target;
+        }
+
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// Converts string to an integer
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public static int ToInt32( this object src, int def = default )
         {
             int target = def;
@@ -205,7 +226,7 @@ namespace Dahl.Extensions
             {
                 return Regex.Replace( src, oldValue, newValue, RegexOptions.IgnoreCase );
             }
-            catch ( Exception )
+            catch
             {
                 return oldValue;
             }
@@ -277,7 +298,7 @@ namespace Dahl.Extensions
             {
                 return src.IsNotNullOrEmpty() ? new Guid( src ) : defaultValue;
             }
-            catch ( Exception )
+            catch
             {
                 return Guid.Empty;
             }

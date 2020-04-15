@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 namespace Dahl.Extensions
 {
@@ -314,7 +315,11 @@ namespace Dahl.Extensions
 
         ///----------------------------------------------------------------------------------------
         /// <summary>
-        /// Perform a deep Copy of an object, object must be serializable.
+        /// Perform a deep Copy of an object.
+        /// 
+        /// If an object is not serializable it uses Newtonsoft to serialize object
+        /// to a json string then deserializes the string back to a new object. The
+        /// serialization method uses settings to preserve object references.
         /// </summary>
         /// <typeparam name="T">The type of object being copied.</typeparam>
         /// <param name="src">The object instance to copy.</param>
@@ -322,15 +327,12 @@ namespace Dahl.Extensions
         public static T Clone<T>( this T src )
         {
             if ( !typeof( T ).IsSerializable )
-            {
-                throw new ArgumentException( "The type must be serializable.", nameof( src ) );
-            }
+                return src.SerializeToJson()
+                          .DeSerializeFromJson<T>();
 
             // Don't serialize a null object, simply return the default for that object
             if ( src == null )
-            {
                 return default;
-            }
 
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new MemoryStream();
@@ -340,6 +342,40 @@ namespace Dahl.Extensions
                 stream.Seek( 0, SeekOrigin.Begin );
                 return (T)formatter.Deserialize( stream );
             }
+        }
+
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// Uses Newtonsoft.Json because it's widely used and System.Text.Json only supports
+        /// .NET Core 3.0 and up.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="src"></param>
+        /// <returns></returns>
+        public static string SerializeToJson<T>( this T src, Newtonsoft.Json.Formatting formatting = Formatting.None )
+        {
+            if ( src == null )
+                return string.Empty;
+
+            var settings = new JsonSerializerSettings {
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+                Formatting = (formatting == Formatting.None ? Formatting.None : Formatting.Indented)
+            };
+
+            return JsonConvert.SerializeObject( src, settings );
+        }
+
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// Uses Newtonsoft.Json because it's widely used and System.Text.Json only supports
+        /// .NET Core 3.0 and up.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="src"></param>
+        /// <returns></returns>
+        public static T DeSerializeFromJson<T>( this string src )
+        {
+            return JsonConvert.DeserializeObject<T>( src );
         }
     }
 }

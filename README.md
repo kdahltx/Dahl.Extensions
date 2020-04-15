@@ -1,6 +1,9 @@
 Dahl.Data - .NET Extension methods for string, Dictionary, int, Linq, Property, StringBuilder
 ========================================
 
+[![Build Status](https://dev.azure.com/Dahl.Extensions/_apis/build/status/Dahl.Extensions?branchName=master)](https://dev.azure.com/Dahl.Extensions/_build/latest?definitionId=4&branchName=master)
+
+![Nuget](https://img.shields.io/nuget/v/blazored.modal.svg)
 
 Release Notes
 -------------
@@ -17,20 +20,31 @@ Packages
 
 Features
 --------
-Dahl.Extensions is a [NuGet library](https://www.nuget.org/packages/Dahl.Extensions) that you can add in to
-your project to use extension methods to write code that is easier to write and read.
+Dahl.Extensions is a [NuGet library](https://www.nuget.org/packages/Dahl.Extensions)
+you use in your project to help make your code easier to write and read.
 
 Example usage: Test for null or empty string
 ```csharp
 string userName;
 
+//---------------------------------------------
+// check userName for NOT being null or empty.
+// uses .NET static method
+if (!string.IsNullOrEmpty(userName) )
+    doSomething();
+
+// uses extension library.
 if ( userName.IsNotNullOrEmpty() )
     doSomething();
 
-if ( userName.IsNullOrEmpty() )
+//---------------------------------------------
+// check userName for being null or empty.
+// uses .NET static method
+if (string.IsNullOrEmpty(userName) )
     doSomething();
 
-if ( userName.EqualsIgnoreCase( "aBc" ) )
+// uses extension library.
+if ( userName.IsNullOrEmpty() )
     doSomething();
 
 
@@ -58,6 +72,9 @@ sentence = sentence.ToEllipsis( 7 );
 Example usage: Convert a string value to integer
 ```csharp
 string num = "123";
+
+// handles exceptions and returns a default value if
+// the string is null or an invalid value.
 int val = num.ToInt32();
 ```
 

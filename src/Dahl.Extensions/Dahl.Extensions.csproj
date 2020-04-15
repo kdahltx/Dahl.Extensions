@@ -1,46 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="14.0">
-  <PropertyGroup Label="Globals">
-    <SccProjectName>SAK</SccProjectName>
-    <SccProvider>SAK</SccProvider>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-  </PropertyGroup>
-  <PropertyGroup>
-    <TargetFrameworks>net46;net461;net462;net47;net471;net472;net48;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;</TargetFrameworks>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <SignAssembly>true</SignAssembly>
-    <ShouldCreateLogs>True</ShouldCreateLogs>
-    <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
-    <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
-    <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
-    <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
-    <Authors>Kevin Dahl</Authors>
-    <Company>Dahl Software Services</Company>
-    <Product>Extensions basic .NET libraries</Product>
-    <Description>Basic extensions for string, int, Linq, List, Object, Properties, StringBuilder, and Dictionary to simplify routine tasks.</Description>
-    <Copyright>Dahl Software Services</Copyright>
-    <PackageTags>Extensions for Dictionary, Int32, Linq, List, Object, Property, StringBuilder, String libraries</PackageTags>
-    <AssemblyVersion>1.1.22.284</AssemblyVersion>
-    <FileVersion>1.1.22.284</FileVersion>
-    <Version>1.1.22</Version>
-    <PackageReleaseNotes>Updated to work with .NET 4.5, 4.6, 4.61, 4.62, 4.7, 4.71, 4.72, 4.8, Core 2.0, Core 2.1, Core 2.2, Core 3.0</PackageReleaseNotes>
-    <DelaySign>false</DelaySign>
-    <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
-    <PackageProjectUrl>https://github.com/kdahltx/Dahl.Extensions</PackageProjectUrl>
-    <PackageLicense>https://github.com/kdahltx/Dahl.Extensions/blob/master/LICENSE</PackageLicense>
-    <RepositoryUrl>https://github.com/kdahltx/Dahl.Extensions</RepositoryUrl>
-    <RepositoryType></RepositoryType>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\..\Dahl.Data\LICENSE.txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+    <PropertyGroup Label="Globals">
+        <SccProjectName>SAK</SccProjectName>
+        <SccProvider>SAK</SccProvider>
+        <SccAuxPath>SAK</SccAuxPath>
+        <SccLocalPath>SAK</SccLocalPath>
+    </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net46;net461;net462;net47;net471;net472;net48;netcoreapp2.0;netcoreapp2.1;netcoreapp2.2;netcoreapp3.0;netcoreapp3.1;</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <SignAssembly>true</SignAssembly>
+        <ShouldCreateLogs>True</ShouldCreateLogs>
+        <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
+        <UpdateAssemblyVersion>True</UpdateAssemblyVersion>
+        <UpdateAssemblyFileVersion>True</UpdateAssemblyFileVersion>
+        <UpdateAssemblyInfoVersion>True</UpdateAssemblyInfoVersion>
+        <Authors>Kevin Dahl</Authors>
+        <Company>Dahl Software Services</Company>
+        <Product>Extensions basic .NET libraries</Product>
+        <Description>Basic extensions for string, int, Linq, List, Object, Properties, StringBuilder, and Dictionary to simplify routine tasks.</Description>
+        <Copyright>Dahl Software Services</Copyright>
+        <PackageTags>Extensions for Dictionary, Int32, Linq, List, Object, Property, StringBuilder, String libraries</PackageTags>
+        <AssemblyVersion>1.1.3.284</AssemblyVersion>
+        <FileVersion>1.1.3.284</FileVersion>
+        <Version>1.1.3</Version>
+        <PackageReleaseNotes>Updated to work with .NET 4.6, 4.61, 4.62, 4.7, 4.71, 4.72, 4.8, Core 2.0, Core 2.1, Core 2.2, Core 3.0, Core 3.1
+</PackageReleaseNotes>
+        <DelaySign>false</DelaySign>
+        <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
+        <PackageProjectUrl>https://github.com/kdahltx/Dahl.Extensions</PackageProjectUrl>
+        <PackageLicense>https://github.com/kdahltx/Dahl.Extensions/blob/master/LICENSE</PackageLicense>
+        <RepositoryUrl>https://github.com/kdahltx/Dahl.Extensions</RepositoryUrl>
+        <RepositoryType></RepositoryType>
+        <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <Folder Include="Properties\" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="..\..\..\Dahl.Data\LICENSE.txt">
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    </ItemGroup>
 </Project>
