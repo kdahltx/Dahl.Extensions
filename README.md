@@ -1,4 +1,4 @@
-Dahl.Data - .NET Extension methods for string, Dictionary, int, Linq, Property, StringBuilder
+Dahl.Extensions - .NET Extension methods for string, Dictionary, int, Linq, Property, StringBuilder
 ========================================
 
 [![Build Status](https://dev.azure.com/Dahl.Extensions/_apis/build/status/Dahl.Extensions?branchName=master)](https://dev.azure.com/Dahl.Extensions/_build/latest?definitionId=4&branchName=master)
