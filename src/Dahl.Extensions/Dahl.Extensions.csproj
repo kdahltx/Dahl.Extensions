@@ -30,7 +30,6 @@
         <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
         <RepositoryType></RepositoryType>
         <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     </PropertyGroup>
     <ItemGroup>
         <Folder Include="Properties\" />
