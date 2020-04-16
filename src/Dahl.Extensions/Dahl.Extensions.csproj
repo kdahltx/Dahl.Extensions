@@ -28,7 +28,6 @@
 </PackageReleaseNotes>
         <DelaySign>false</DelaySign>
         <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
-        <RepositoryType></RepositoryType>
         <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     </PropertyGroup>
     <ItemGroup>
