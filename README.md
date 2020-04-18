@@ -7,7 +7,7 @@ Dahl.Extensions - .NET Extension methods for string, Dictionary, int, Linq, Prop
 
 Release Notes
 -------------
-Located at [kdahltx/Dahl.Extensions](https://github.com/kdahltx/Data.Extensions)
+Located at [kdahltx/Dahl.Extensions](https://github.com/kdahltx/Dahl.Extensions)
 
 Packages
 --------
