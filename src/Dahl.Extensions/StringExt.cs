@@ -31,6 +31,28 @@ namespace Dahl.Extensions
         /// <param name="src"></param>
         /// <param name="def"></param>
         /// <returns></returns>
+        public static char ToChar( this object src, char def = default )
+        {
+            char target = def;
+            if ( src is string )
+            {
+                var s = src as string;
+                if ( s.Length > 0 )
+                    target = s[0];
+            }
+            else if ( src is byte || src is int )
+                target = Convert.ToChar( src );
+
+            return target;
+        }
+
+        ///----------------------------------------------------------------------------------------
+        /// <summary>
+        /// Converts string to an integer
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="def"></param>
+        /// <returns></returns>
         public static byte ToByte( this object src, byte def = default )
         {
             byte target = def;

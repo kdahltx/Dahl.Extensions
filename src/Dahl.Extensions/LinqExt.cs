@@ -109,9 +109,11 @@ namespace Dahl.Extensions
         /// <returns></returns>
         private static object OrderFunc<T>( T src, string propertyName )
         {
+            if ( propertyName.IsNullOrEmpty() )
+                return src;
+
             string propName = propertyName;
             object newObj = src;
-
             if ( propertyName.Contains( '.' ) )
             {
                 // the requested property is contained in a child object
@@ -123,18 +125,18 @@ namespace Dahl.Extensions
                 propName = parts[numParts];
             }
 
-            PropertyInfo propertyGetter = newObj.GetType()
-                                                .GetProperty( propName,
-                                                              BindingFlags.Public |
-                                                              BindingFlags.Instance |
-                                                              BindingFlags.IgnoreCase );
-            if ( propertyGetter == null )
-            {
-                string msg = $"Sort Expression could not find the provided property name: {propertyName}.";
-                throw new ArgumentException( msg );
-            }
+            var objType = newObj.GetType();
+            if ( objType == null )
+                throw new ArgumentException( "LinqExt::OrderFunc<T>(T src, string propertyName ) => newObj.GetType() returned null." );
 
-            return propertyGetter.GetValue( newObj, null );
+            var getter = objType.GetProperty( propName,
+                                              BindingFlags.Public   |
+                                              BindingFlags.Instance |
+                                              BindingFlags.IgnoreCase );
+            if ( getter == null )
+                throw new ArgumentException( $"Sort Expression could not find the provided property name: {propName}." );
+
+            return getter.GetValue( newObj, null );
         }
 
         ///----------------------------------------------------------------------------------------
@@ -201,7 +203,7 @@ namespace Dahl.Extensions
         }
         #endregion
 
-        #region 
+        #region Sorts only the one specified column
         /// <summary>
         /// Sorts ONLY the specified column, does NOT order other columns in src
         /// </summary>
@@ -234,6 +236,25 @@ namespace Dahl.Extensions
                 originalSrc[i, colNum] = src[i];
 
             return originalSrc;
+        }
+        #endregion
+
+        #region 
+        ///---------------------------------------------------------------------------------------- 
+        /// <summary>
+        /// Taken from visual studio magazine article by Peter Vogel 08/07/2019
+        ///     https://visualstudiomagazine.com/articles/2019/07/01/updating-linq.aspx
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="updateMethod"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> SetValue<T>( this IEnumerable<T> items, Action<T> updateMethod )
+        {
+            foreach ( T item in items )
+                updateMethod( item );
+
+            return items;
         }
         #endregion
     }

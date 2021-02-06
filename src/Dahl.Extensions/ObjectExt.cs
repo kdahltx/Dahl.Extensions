@@ -327,21 +327,28 @@ namespace Dahl.Extensions
         public static T Clone<T>( this T src )
         {
             if ( !typeof( T ).IsSerializable )
-                return src.SerializeToJson()
-                          .DeSerializeFromJson<T>();
+            {
+                var jsonSettings = new JsonSerializerSettings
+                {
+                    Formatting = Formatting.Indented,
+                    PreserveReferencesHandling = PreserveReferencesHandling.Objects
+                };
+
+                var json = JsonConvert.SerializeObject( src, jsonSettings );
+                T obj = JsonConvert.DeserializeObject<T>( json );
+
+                return obj;
+            }
 
             // Don't serialize a null object, simply return the default for that object
             if ( src == null )
                 return default;
 
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new MemoryStream();
-            using ( stream )
-            {
-                formatter.Serialize( stream, src );
-                stream.Seek( 0, SeekOrigin.Begin );
-                return (T)formatter.Deserialize( stream );
-            }
+            var jsonString = SerializeToJson<T>( src );
+            if ( jsonString.IsNullOrEmpty() )
+                return default;
+
+            return DeserializeFromJson<T>( jsonString );
         }
 
         ///----------------------------------------------------------------------------------------
@@ -373,7 +380,7 @@ namespace Dahl.Extensions
         /// <typeparam name="T"></typeparam>
         /// <param name="src"></param>
         /// <returns></returns>
-        public static T DeSerializeFromJson<T>( this string src )
+        public static T DeserializeFromJson<T>( this string src )
         {
             return JsonConvert.DeserializeObject<T>( src );
         }

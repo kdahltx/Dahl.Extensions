@@ -86,6 +86,9 @@ namespace Dahl.Extensions
 
         public static int[] Add( this int[] src, int value )
         {
+            if ( src == null )
+                return null;
+
             var list = src.ToList();
             list.Add( value );
             src = list.ToArray();
