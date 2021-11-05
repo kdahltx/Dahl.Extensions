@@ -1,7 +1,5 @@
-﻿using System.ComponentModel;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Dahl.Extensions;
 
 namespace Dahl.Extensions.Tests
 {
