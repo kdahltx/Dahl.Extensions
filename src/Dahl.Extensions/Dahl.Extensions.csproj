@@ -7,7 +7,7 @@
         <SccLocalPath>SAK</SccLocalPath>
     </PropertyGroup>
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;netstandard2.1;net461;net462;net47;net471;net472;net48;netcoreapp3.1;net5.0;</TargetFrameworks>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net461;net462;net47;net471;net472;net48;net5.0;net6.0;</TargetFrameworks>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <SignAssembly>true</SignAssembly>
         <ShouldCreateLogs>True</ShouldCreateLogs>
@@ -24,7 +24,7 @@
         <AssemblyVersion>1.1.4.284</AssemblyVersion>
         <FileVersion>1.1.4.284</FileVersion>
         <Version>1.1.4</Version>
-        <PackageReleaseNotes>Updated to work with .NET 4.61, 4.62, 4.7, 4.71, 4.72, 4.8, Core 3.1, 5.0</PackageReleaseNotes>
+        <PackageReleaseNotes>Updated to work with .NET 4.61, 4.62, 4.7, 4.71, 4.72, 4.8, Net 5.0, Net 6.0</PackageReleaseNotes>
         <DelaySign>false</DelaySign>
         <AssemblyOriginatorKeyFile>Dahl.Extensions.snk</AssemblyOriginatorKeyFile>
         <PackageProjectUrl>https://github.com/kdahltx/Dahl.Extensions</PackageProjectUrl>
@@ -38,7 +38,7 @@
         <Folder Include="Properties\" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     </ItemGroup>
     <ItemGroup>
         <None Include="..\..\LICENSE.txt">
