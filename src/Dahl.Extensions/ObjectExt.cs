@@ -323,6 +323,7 @@ namespace Dahl.Extensions
         /// <returns>The copied object.</returns>
         public static T Clone<T>( this T src )
         {
+// Quick fix for .net 8.0
 #if !NET8_0_OR_GREATER
             if ( !typeof( T ).IsSerializable )
             {
