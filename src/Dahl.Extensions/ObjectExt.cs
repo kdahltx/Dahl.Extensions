@@ -323,6 +323,7 @@ namespace Dahl.Extensions
         /// <returns>The copied object.</returns>
         public static T Clone<T>( this T src )
         {
+#if !NET8_0_OR_GREATER
             if ( !typeof( T ).IsSerializable )
             {
                 var jsonSettings = new JsonSerializerSettings
@@ -336,7 +337,7 @@ namespace Dahl.Extensions
 
                 return obj;
             }
-
+#endif
             // Don't serialize a null object, simply return the default for that object
             if ( src == null )
                 return default;
